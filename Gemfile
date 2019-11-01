@@ -6,6 +6,7 @@ ruby '2.6.0'
 gem 'rails', '~> 5.2.3'
 gem 'puma', '~> 3.11'
 gem 'pg'
+gem 'devise'
 
 # API
 gem 'grape'
