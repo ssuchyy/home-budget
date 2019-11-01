@@ -6,7 +6,10 @@ ruby '2.6.0'
 gem 'rails', '~> 5.2.3'
 gem 'puma', '~> 3.11'
 gem 'pg'
+
+# Authentication/Authorization
 gem 'devise'
+gem 'doorkeeper'
 
 # API
 gem 'grape'
@@ -22,4 +25,9 @@ end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
+end
+
+group :test do
+  gem 'factory_bot_rails'
+  gem 'ffaker'
 end
