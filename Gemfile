@@ -16,6 +16,11 @@ gem 'grape'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
 
+# Service
+gem 'dry-monads'
+gem 'dry-struct'
+gem 'dry-types'
+
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
@@ -30,4 +35,5 @@ end
 group :test do
   gem 'factory_bot_rails'
   gem 'ffaker'
+  gem 'shoulda-matchers'
 end
