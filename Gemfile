@@ -13,6 +13,7 @@ gem 'doorkeeper'
 
 # API
 gem 'grape'
+gem 'grape-entity'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
 
@@ -26,6 +27,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'pry', '~> 0.12.2'
+  gem 'pry-rails'
 end
 
 group :development do
