@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe V1::Users::Register, type: :request do
-  describe 'api/v1/users/registration' do
+  describe 'api/v1/users/send_reset_password_instructions' do
     subject { patch '/api/v1/users/send_reset_password_instructions', params: params }
 
     let(:params) { { email: email } }
@@ -11,10 +11,7 @@ RSpec.describe V1::Users::Register, type: :request do
     context 'when user does not exist' do
       let(:email) { FFaker::Internet.email }
 
-      it 'returns 200 status code' do
-        subject
-        expect(response).to have_http_status(204)
-      end
+      it_behaves_like 'returning status code', 204
     end
 
     context 'when user exists' do
@@ -23,10 +20,7 @@ RSpec.describe V1::Users::Register, type: :request do
 
       before { allow(User).to receive(:find_by).with(email: user.email).and_return(user) }
 
-      it 'returns 200 status code' do
-        subject
-        expect(response).to have_http_status(204)
-      end
+      it_behaves_like 'returning status code', 204
 
       it 'sends reset password instructions for that user' do
         expect(user).to receive(:send_reset_password_instructions)

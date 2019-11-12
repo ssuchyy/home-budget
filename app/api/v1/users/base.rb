@@ -5,6 +5,7 @@ module V1
     class Base < Grape::API
       mount V1::Users::Register
       mount V1::Users::SendResetPasswordInstructions
+      mount V1::Users::ResetPassword
     end
   end
 end

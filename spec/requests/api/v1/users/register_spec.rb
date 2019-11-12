@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe V1::Users::Register, type: :request do
-  describe 'api/v1/users/registration' do
+  describe 'api/v1/users/register' do
     subject { post '/api/v1/users/register', params: params }
 
     let(:params) { { email: email, password: password } }
