@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'pry', '~> 0.12.2'
   gem 'pry-rails'
+  gem 'letter_opener'
 end
 
 group :development do
