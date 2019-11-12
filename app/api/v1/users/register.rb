@@ -11,8 +11,8 @@ module V1
 
         post :register do
           result = UserService::Register
-                   .new(email: declared(params)[:email],
-                        password: declared(params)[:password])
+                   .new(email: params[:email],
+                        password: params[:password])
                    .call
 
           if result.success?
