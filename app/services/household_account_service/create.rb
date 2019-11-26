@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 
 module HouseholdAccountService
-  class Create < Dry::Struct
-    include Dry::Monads[:result]
-
-    module Types
-      include Dry.Types()
-    end
-
+  class Create < BaseService
     attribute :user, Types::Instance(User)
     attribute :name, Types::String
 

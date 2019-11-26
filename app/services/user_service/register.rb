@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 
 module UserService
-  class Register < Dry::Struct
-    include Dry::Monads[:result]
-
-    module Types
-      include Dry.Types()
-    end
-
+  class Register < BaseService
     attribute :email, Types::String
     attribute :password, Types::String
 
