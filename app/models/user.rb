@@ -14,7 +14,7 @@ class User < ApplicationRecord
            foreign_key: :resource_owner_id,
            dependent: :delete_all
 
-  belongs_to :household_account
+  belongs_to :household_account, optional: true
 
   validates :email, uniqueness: true
 end
