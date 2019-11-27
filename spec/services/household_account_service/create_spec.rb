@@ -23,12 +23,13 @@ describe HouseholdAccountService::Create, type: :service do
 
       context 'when household account cannot be saved' do
         before do
-          allow_any_instance_of(HouseholdAccount)
-            .to receive(:save)
-            .and_return(false)
-          allow_any_instance_of(HouseholdAccount)
-            .to receive(:errors)
-            .and_return(errors_double)
+          allow(HouseholdAccount)
+            .to receive(:new)
+            .and_return(household_account_double)
+        end
+
+        let(:household_account_double) do
+          instance_double(HouseholdAccount, save: false, errors: errors_double)
         end
 
         let(:errors_double) do

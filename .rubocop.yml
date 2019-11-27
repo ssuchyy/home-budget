@@ -1,14 +1,32 @@
 require: rubocop-rspec
 
+Style/Documentation:
+  Enabled: false
+Style/WordArray:
+  Enabled: false
+Style/BlockComments:
+  Enabled: false
 Metrics/LineLength:
     Max: 99
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+Lint/ShadowingOuterLocalVariable:
+  Exclude:
+    - 'spec/rails_helper.rb'
 RSpec/NotToNot:
   EnforcedStyle: 'to_not'
 RSpec/ExpectChange:
   EnforcedStyle: 'block'
+RSpec/NestedGroups:
+  Max: 5
+RSpec/MessageSpies:
+  EnforcedStyle: 'receive'
+RSpec/LetBeforeExamples:
+  Enabled: false
 AllCops:
   Exclude:
     - 'bin/*'

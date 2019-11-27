@@ -25,13 +25,12 @@ describe UserService::Register, type: :service do
 
     context 'when user is invalid' do
       before do
-        allow_any_instance_of(User)
-          .to receive(:save)
-          .and_return(false)
-        allow_any_instance_of(User)
-          .to receive(:errors)
-          .and_return(errors_double)
+        allow(User)
+          .to receive(:new)
+          .and_return(user_double)
       end
+
+      let(:user_double) { instance_double(User, save: false, errors: errors_double) }
 
       let(:errors_double) do
         instance_double(ActiveModel::Errors, full_messages: stubbed_full_messages)

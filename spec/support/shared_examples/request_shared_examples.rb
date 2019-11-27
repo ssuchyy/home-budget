@@ -14,7 +14,7 @@ shared_examples 'authenticating user' do
   end
 end
 
-shared_examples 'returning error with proper error messages' do |status_code=:bad_request|
+shared_examples 'returning error with proper error messages' do |status_code = :bad_request|
   it 'returns error with proper error messages', :aggregate_failures do
     subject
     expect(response).to have_http_status(status_code)

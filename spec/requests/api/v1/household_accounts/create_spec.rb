@@ -26,7 +26,7 @@ RSpec.describe V1::HouseholdAccounts::Create, type: :request do
       end
 
       before do
-        expect(HouseholdAccountService::Create)
+        allow(HouseholdAccountService::Create)
           .to receive(:new)
           .with(user: user, name: name)
           .and_return(create_service_double)
@@ -40,7 +40,7 @@ RSpec.describe V1::HouseholdAccounts::Create, type: :request do
 
         it_behaves_like 'returning status code', :created
 
-        it 'returns newly created household account' do
+        it 'returns newly created household account', :aggregate_failures do
           make_request
           expect(response_body['id']).to eq(HouseholdAccount.last.id)
           expect(response_body['name']).to eq(name)

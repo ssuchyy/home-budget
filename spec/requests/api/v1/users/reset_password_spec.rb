@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe V1::Users::Register, type: :request do
+RSpec.describe V1::Users::ResetPassword, type: :request do
   describe 'api/v1/users/reset_password' do
     subject(:make_request) { patch '/api/v1/users/reset_password', params: params }
 
@@ -33,10 +33,8 @@ RSpec.describe V1::Users::Register, type: :request do
 
     context 'when reset password token is invalid' do
       let(:reset_password_token) { 'invalid_token' }
-
-      it_behaves_like 'returning status code', 400
-
       let(:error_messages) { ['Reset password token is invalid'] }
+
       it_behaves_like 'returning error with proper error messages'
     end
   end

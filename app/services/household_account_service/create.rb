@@ -21,8 +21,7 @@ module HouseholdAccountService
     end
 
     def create_household_account
-      account = HouseholdAccount.new(name: name)
-      account.users << user
+      account = HouseholdAccount.new(name: name, users: [user])
 
       if account.save
         Success(household_account: account)

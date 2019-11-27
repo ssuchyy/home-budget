@@ -2,9 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe V1::Users::Register, type: :request do
+RSpec.describe V1::Users::SendResetPasswordInstructions, type: :request do
   describe 'api/v1/users/send_reset_password_instructions' do
-    subject(:make_request) { patch '/api/v1/users/send_reset_password_instructions', params: params }
+    subject(:make_request) do
+      patch '/api/v1/users/send_reset_password_instructions', params: params
+    end
 
     let(:params) { { email: email } }
 
