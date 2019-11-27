@@ -1,46 +1,50 @@
-# Ruby CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
-#
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/ruby:2.6.0-node-browsers
+      environment:
+        PGHOST: 127.0.0.1
+        PGUSER: home_budget
+    - image: circleci/postgres:12.1-alpine-ram
+      environment:
+        POSTGRES_USER: home_budget
+
 version: 2
 jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/ruby:2.4.1-node-browsers
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
-    working_directory: ~/repo
-
+  checkout_code:
+    <<: *defaults
     steps:
       - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run:
-          name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-      - save_cache:
+      - persist_to_workspace:
+          root: ~/repo
           paths:
-            - ./vendor/bundle
+            - .
+
+  bundle_install:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run: gem install bundler
+      - restore-cache:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save-cache:
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/repo/vendor/bundle
 
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
-
-      # run tests!
+  run_unit_tests:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - restore-cache:
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: bundle config
+          command: bundle config --local path ~/repo/vendor/bundle
+      - run: RAILS_ENV=test bundle exec rake db:create db:schema:load --trace
       - run:
           name: run tests
           command: |
@@ -50,14 +54,19 @@ jobs:
 
             bundle exec rspec \
               --format progress \
-              --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
               --format progress \
               $TEST_FILES
 
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+workflows:
+  version: 2
+
+  build-and-test:
+    jobs:
+      - checkout_code
+      - bundle_install:
+          requires:
+            - checkout_code
+      - run_unit_tests:
+          requires:
+            - bundle_install
