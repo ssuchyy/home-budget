@@ -11,7 +11,7 @@ RSpec.describe 'OAuth', type: :request do
     shared_examples 'returning invalid grant error' do
       it 'returns invalid grant error', :aggregate_failures do
         subject
-        expect(response).to have_http_status(400)
+        expect(response).to have_http_status(:bad_request)
         expect(response_body['error']).to eq('invalid_grant')
       end
     end

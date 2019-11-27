@@ -10,7 +10,7 @@ end
 shared_examples 'authenticating user' do
   it 'authenticates user' do
     subject
-    expect(response).to have_http_status(401)
+    expect(response).to have_http_status(:unauthorized)
   end
 end
 
