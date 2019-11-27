@@ -3,10 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.0'
 
-gem 'rails', '~> 5.2.3'
-gem 'puma', '~> 3.11'
-gem 'pg'
 gem "haml-rails", "~> 2.0"
+gem 'pg'
+gem 'puma', '~> 3.11'
+gem 'rails', '~> 5.2.3'
 
 # Authentication/Authorization
 gem 'devise'
@@ -26,10 +26,10 @@ gem 'dry-types'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.8'
+  gem 'letter_opener'
   gem 'pry', '~> 0.12.2'
   gem 'pry-rails'
-  gem 'letter_opener'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do
