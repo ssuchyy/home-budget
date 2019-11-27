@@ -6,5 +6,6 @@ module V1
     format :json
 
     mount V1::Users::Base
+    mount V1::HouseholdAccounts::Base
   end
 end

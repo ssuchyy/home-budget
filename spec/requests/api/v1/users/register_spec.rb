@@ -35,11 +35,7 @@ RSpec.describe V1::Users::Register, type: :request do
           .and_return(register_service_double)
       end
 
-      it 'returns error with proper message', :aggregate_failures do
-        subject
-        expect(response).to have_http_status(400)
-        expect(response_body['error']).to include(*error_messages)
-      end
+      it_behaves_like 'returning error with proper error messages'
     end
   end
 end
