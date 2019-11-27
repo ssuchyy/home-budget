@@ -1,2 +1,7 @@
+require: rubocop-rspec
+
 Metrics/LineLength:
     Max: 99
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'

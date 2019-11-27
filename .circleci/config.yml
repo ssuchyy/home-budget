@@ -58,6 +58,20 @@ jobs:
               --format progress \
               $TEST_FILES
 
+  run_rubocop:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - restore_cache:
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Install rubocop
+          command: gem install rubocop; gem install rubocop-rspec
+      - run:
+          name: Run rubocop
+          command: rubocop
+
 workflows:
   version: 2
 
@@ -67,6 +81,9 @@ workflows:
       - bundle_install:
           requires:
             - checkout_code
+      - run_rubocop:
+          requires:
+            - bundle_install
       - run_unit_tests:
           requires:
             - bundle_install
