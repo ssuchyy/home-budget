@@ -4,18 +4,18 @@ require 'rails_helper'
 
 RSpec.describe V1::Users::Register, type: :request do
   describe 'api/v1/users/register' do
-    subject { post '/api/v1/users/register', params: params }
+    subject(:make_request) { post '/api/v1/users/register', params: params }
 
     let(:params) { { email: email, password: password } }
     let(:email) { FFaker::Internet.email }
     let(:password) { FFaker::Internet.password }
 
     it 'creates user' do
-      expect { subject }.to change { User.count }.by(1)
+      expect { make_request }.to change { User.count }.by(1)
     end
 
     it 'returns newly created user', :aggregate_failures do
-      subject
+      make_request
       expect(response_body['id']).to eq(User.last.id)
       expect(response_body['email']).to eq(email)
     end

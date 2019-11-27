@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe V1::HouseholdAccounts::Create, type: :request do
   describe 'api/v1/household_accounts' do
-    subject { post '/api/v1/household_accounts', params: params, headers: headers }
+    subject(:make_request) { post '/api/v1/household_accounts', params: params, headers: headers }
 
     let(:params) { { name: name } }
     let(:headers) { nil }
@@ -41,7 +41,7 @@ RSpec.describe V1::HouseholdAccounts::Create, type: :request do
         it_behaves_like 'returning status code', :created
 
         it 'returns newly created household account' do
-          subject
+          make_request
           expect(response_body['id']).to eq(HouseholdAccount.last.id)
           expect(response_body['name']).to eq(name)
           expect(response_body['users'][0]['email']).to eq(user.email)

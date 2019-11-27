@@ -5,6 +5,10 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+RSpec/NotToNot:
+  EnforcedStyle: 'to_not'
+RSpec/ExpectChange:
+  EnforcedStyle: 'block'
 AllCops:
   Exclude:
     - 'bin/*'

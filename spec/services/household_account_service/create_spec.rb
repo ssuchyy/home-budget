@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe HouseholdAccountService::Create, type: :service do
   describe '#call' do
-    subject { described_class.new(user: user, name: name).call }
+    subject(:service_call) { described_class.new(user: user, name: name).call }
 
     let(:name) { FFaker::Company.name }
 
@@ -17,7 +17,7 @@ describe HouseholdAccountService::Create, type: :service do
       it { is_expected.to be_success }
 
       it 'creates new household account associated with given user', :aggregate_failures do
-        expect { subject }.to change { HouseholdAccount.count }.by(1)
+        expect { service_call }.to change { HouseholdAccount.count }.by(1)
         expect(user.reload.household_account).to eq(HouseholdAccount.last)
       end
 
@@ -40,7 +40,7 @@ describe HouseholdAccountService::Create, type: :service do
         it { is_expected.to be_failure }
 
         it 'does not create any household accounts' do
-          expect { subject }.to_not change { HouseholdAccount.count }
+          expect { service_call }.to_not change { HouseholdAccount.count }
         end
 
         it 'returns validation errors full messages' do

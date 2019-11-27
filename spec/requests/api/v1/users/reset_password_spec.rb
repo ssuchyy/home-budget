@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe V1::Users::Register, type: :request do
   describe 'api/v1/users/reset_password' do
-    subject { patch '/api/v1/users/reset_password', params: params }
+    subject(:make_request) { patch '/api/v1/users/reset_password', params: params }
 
     let(:params) do
       {
@@ -26,7 +26,7 @@ RSpec.describe V1::Users::Register, type: :request do
       it_behaves_like 'returning status code', 204
 
       it 'resets user password' do
-        subject
+        make_request
         expect(user.reload.valid_password?(password)).to be true
       end
     end

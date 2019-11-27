@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe UserService::Register, type: :service do
   describe '#call' do
-    subject { described_class.new(email: email, password: password).call }
+    subject(:service_call) { described_class.new(email: email, password: password).call }
 
     let(:email) { FFaker::Internet.email }
     let(:password) { FFaker::Internet.password }
@@ -15,7 +15,7 @@ describe UserService::Register, type: :service do
     it { is_expected.to be_success }
 
     it 'creates new user' do
-      expect { subject }.to change { User.count }.by(1)
+      expect { service_call }.to change { User.count }.by(1)
     end
 
     it 'returns newly created user', :aggregate_failures do
@@ -42,7 +42,7 @@ describe UserService::Register, type: :service do
       it { is_expected.to be_failure }
 
       it 'does not create any user' do
-        expect { subject }.to_not change { User.count }
+        expect { service_call }.to_not change { User.count }
       end
 
       it 'returns validation errors full messages' do

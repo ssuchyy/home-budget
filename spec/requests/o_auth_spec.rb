@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'OAuth', type: :request do
   describe '/oauth/token' do
-    subject { post '/oauth/token', params: params }
+    subject(:make_request) { post '/oauth/token', params: params }
 
     let(:user) { create(:user, password: 'password') }
 
@@ -45,7 +45,7 @@ RSpec.describe 'OAuth', type: :request do
         let(:password) { 'password' }
 
         it 'returns expirable auth token', :aggregate_failures do
-          subject
+          make_request
           expect(response_body).to have_key('access_token')
           expect(response_body).to have_key('created_at')
           expect(response_body['token_type']).to eq('Bearer')
