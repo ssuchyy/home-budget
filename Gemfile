@@ -6,6 +6,7 @@ ruby '2.6.0'
 gem 'rails', '~> 5.2.3'
 gem 'puma', '~> 3.11'
 gem 'pg'
+gem "haml-rails", "~> 2.0"
 
 # Authentication/Authorization
 gem 'devise'
