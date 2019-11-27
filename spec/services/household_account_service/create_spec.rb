@@ -55,7 +55,8 @@ describe HouseholdAccountService::Create, type: :service do
       it { is_expected.to be_failure }
 
       it 'returns proper error message' do
-        expect(failure[:errors]).to include('User already has houshold account')
+        expect(failure[:errors])
+          .to include(I18n.t('services.household_account_service.errors.already_has_account'))
       end
     end
   end

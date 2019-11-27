@@ -14,7 +14,7 @@ module HouseholdAccountService
 
     def check_if_user_already_has_household_account
       if user.household_account.present?
-        Failure(errors: ['User already has houshold account'])
+        Failure(errors: [I18n.t('services.household_account_service.errors.already_has_account')])
       else
         Success(true)
       end
