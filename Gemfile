@@ -12,6 +12,7 @@ gem 'rails', '~> 5.2.3'
 
 # Authentication/Authorization
 gem 'devise'
+gem 'devise_invitable'
 gem 'doorkeeper'
 
 # API

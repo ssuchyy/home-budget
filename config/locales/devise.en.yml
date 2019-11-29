@@ -21,6 +21,10 @@ en:
         subject: "Confirmation instructions"
       reset_password_instructions:
         subject: "Reset password instructions"
+        hello: "Hello %{email}"
+        instructions: "Someone has requested to reset your password. Here is your reset password token."
+        token: "Reset password token: %{token}"
+        ignore: "If you didn't request this, please ignore this email."
       unlock_instructions:
         subject: "Unlock instructions"
       email_changed:
