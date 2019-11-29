@@ -27,6 +27,8 @@ RSpec/MessageSpies:
   EnforcedStyle: 'receive'
 RSpec/LetBeforeExamples:
   Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
 AllCops:
   Exclude:
     - 'bin/*'
