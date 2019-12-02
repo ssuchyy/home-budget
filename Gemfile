@@ -14,6 +14,7 @@ gem 'rails', '~> 5.2.3'
 gem 'devise'
 gem 'devise_invitable'
 gem 'doorkeeper'
+gem 'pundit'
 
 # API
 gem 'grape'
@@ -32,6 +33,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'pry', '~> 0.12.2'
   gem 'pry-rails'
+  gem 'pry-nav'
   gem 'rspec-rails', '~> 3.8'
 end
 
