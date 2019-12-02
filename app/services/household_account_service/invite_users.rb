@@ -13,12 +13,20 @@ module HouseholdAccountService
     private
 
     def filter_users_with_household_accounts
-      users_emails.reject! { |email| User.where(email: email).where.not(household_account: nil).exists? }
+      users_emails.reject! do |email|
+        User
+          .where(email: email)
+          .where.not(household_account: nil).exists?
+      end
+
       Success(true)
     end
 
     def invite_users
-      users_emails.each { |email| User.invite!(email: email, household_account: household_account) }
+      users_emails.each do |email|
+        User.invite!(email: email, household_account: household_account)
+      end
+
       Success(true)
     end
   end

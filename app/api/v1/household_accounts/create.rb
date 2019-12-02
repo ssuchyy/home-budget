@@ -3,8 +3,6 @@
 module V1
   module HouseholdAccounts
     class Create < Grape::API
-      helpers ::Helpers::V1::Authorization
-
       before do
         doorkeeper_authorize!
       end

@@ -1,4 +1,8 @@
 en:
+  api:
+    errors:
+      not_found: 'Record cannot be found'
+      unauthorized: 'You are not authorized to perform this action'
   services:
     household_account_service:
       errors:
