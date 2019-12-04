@@ -5,7 +5,7 @@ module Entities
     class HouseholdAccount < Grape::Entity
       expose :id
       expose :name
-      expose :users, using: Entities::V1::User
+      expose :active_users, using: Entities::V1::User, as: :users
     end
   end
 end
