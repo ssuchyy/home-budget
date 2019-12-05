@@ -8,8 +8,8 @@ RSpec.describe Entities::V1::User, type: :entity do
   let(:user) { create(:user) }
 
   it 'exposes only allowed columns', :aggregate_failures do
-    expect(entity_json).to have_key(:id)
-    expect(entity_json).to have_key(:email)
+    expect(entity_json).to have_key('id')
+    expect(entity_json).to have_key('email')
     expect(entity_json.length).to eq(2)
   end
 end

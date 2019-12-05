@@ -52,10 +52,10 @@ RSpec.describe V1::HouseholdAccounts::InviteUsers, type: :request do
 
         let(:invite_users_service_result) { Dry::Monads::Result::Success.new(true) }
 
-        it 'calls invite users service' do :aggregate_failures
+        it 'calls invite users service', :aggregate_failures do
           expect(HouseholdAccountService::InviteUsers).to receive(:new)
           expect(invite_users_service_double).to receive(:call)
-          subject
+          make_request
         end
 
         it_behaves_like 'returning status code', :no_content
