@@ -7,7 +7,7 @@ shared_examples 'returning status code' do |status_code|
   end
 end
 
-shared_examples 'returning 404 not found response' do |status_code|
+shared_examples 'returning 404 not found response' do
   it 'returns 404 not found response', :aggregate_failures do
     subject
     expect(response).to have_http_status(:not_found)
@@ -15,7 +15,7 @@ shared_examples 'returning 404 not found response' do |status_code|
   end
 end
 
-shared_examples 'returning 401 unauthorized response' do |status_code|
+shared_examples 'returning 401 unauthorized response' do
   it 'returns 401 unauthorized', :aggregate_failures do
     subject
     expect(response).to have_http_status(:unauthorized)

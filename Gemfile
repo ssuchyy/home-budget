@@ -32,8 +32,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   gem 'letter_opener'
   gem 'pry', '~> 0.12.2'
-  gem 'pry-rails'
   gem 'pry-nav'
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 3.8'
 end
 

@@ -9,7 +9,7 @@ module V1
       error!(I18n.t('api.errors.not_found'), 404)
     end
 
-    rescue_from Pundit::NotAuthorizedError do |e|
+    rescue_from Pundit::NotAuthorizedError do
       error!(I18n.t('api.errors.unauthorized'), 401)
     end
 
