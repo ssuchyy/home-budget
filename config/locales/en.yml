@@ -7,3 +7,4 @@ en:
     household_account_service:
       errors:
         already_has_account: 'User already has household account'
+        cannot_delete: 'Household account could not be deleted'
