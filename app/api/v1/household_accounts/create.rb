@@ -20,11 +20,7 @@ module V1
                    .new(service_params)
                    .call
 
-          if result.success?
-            Entities::V1::HouseholdAccount.represent(result.success[:household_account])
-          else
-            error!(result.failure[:errors], 400)
-          end
+          handle_service_result(result)
         end
       end
     end

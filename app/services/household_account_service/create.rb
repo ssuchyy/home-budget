@@ -24,7 +24,7 @@ module HouseholdAccountService
       account = HouseholdAccount.new(name: name, users: [user])
 
       if account.save
-        Success(household_account: account)
+        Success(object: account)
       else
         Failure(errors: account.errors.full_messages)
       end

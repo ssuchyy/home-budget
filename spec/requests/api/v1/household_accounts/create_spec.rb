@@ -34,7 +34,7 @@ RSpec.describe V1::HouseholdAccounts::Create, type: :request do
 
       context 'when create service ends with success' do
         let(:create_service_result) do
-          Dry::Monads::Result::Success.new(household_account: household_account)
+          Dry::Monads::Result::Success.new(object: household_account)
         end
         let(:household_account) { create(:household_account, name: name, users: [user]) }
 

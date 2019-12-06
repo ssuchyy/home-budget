@@ -15,11 +15,8 @@ module V1
                         password: params[:password])
                    .call
 
-          if result.success?
-            Entities::V1::User.represent(result.success[:user])
-          else
-            error!(result.failure[:errors], 400)
-          end
+
+          handle_service_result(result)
         end
       end
     end

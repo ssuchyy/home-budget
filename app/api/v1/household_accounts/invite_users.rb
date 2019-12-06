@@ -17,11 +17,11 @@ module V1
 
             authorize!(household_account, :manage?)
 
-            HouseholdAccountService::InviteUsers
-              .new(household_account: household_account, users_emails: params[:emails])
-              .call
+            result = HouseholdAccountService::InviteUsers
+                     .new(household_account: household_account, users_emails: params[:emails])
+                     .call
 
-            status :no_content
+            handle_service_result(result)
           end
         end
       end

@@ -14,7 +14,7 @@ module UserService
     def create_user
       user = User.new(email: email, password: password)
       if user.save
-        Success(user: user)
+        Success(object: user)
       else
         Failure(errors: user.errors.full_messages)
       end

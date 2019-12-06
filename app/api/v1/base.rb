@@ -13,6 +13,8 @@ module V1
       error!(I18n.t('api.errors.unauthorized'), 401)
     end
 
+    helpers ::Helpers::V1::Services
+
     mount V1::Users::Base
     mount V1::HouseholdAccounts::Base
   end
