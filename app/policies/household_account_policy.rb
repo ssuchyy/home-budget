@@ -11,4 +11,8 @@ class HouseholdAccountPolicy
   def manage?
     user.household_account == household_account
   end
+
+  def destroy?
+    manage?
+  end
 end
