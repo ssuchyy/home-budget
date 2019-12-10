@@ -19,8 +19,8 @@ describe UserService::Register, type: :service do
     end
 
     it 'returns newly created user', :aggregate_failures do
-      expect(success[:user]).to eq(User.last)
-      expect(success[:user].email).to eq(email)
+      expect(success[:object]).to eq(User.last)
+      expect(success[:object].email).to eq(email)
     end
 
     context 'when user is invalid' do

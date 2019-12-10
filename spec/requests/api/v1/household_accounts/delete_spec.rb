@@ -6,7 +6,7 @@ RSpec.describe V1::HouseholdAccounts::Delete, type: :request do
   describe 'api/v1/household_accounts/:id/delete' do
     subject(:make_request) do
       delete "/api/v1/household_accounts/#{household_account_id}",
-           headers: headers
+              headers: headers
     end
 
     let(:headers) { nil }
