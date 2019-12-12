@@ -2,6 +2,7 @@
 
 class HouseholdAccount < ApplicationRecord
   has_many :users, dependent: :nullify
+  has_many :budgets, dependent: :destroy
 
   validates :name, presence: true
 

@@ -1,3 +1,5 @@
 class Budget < ApplicationRecord
-  validates :name, presence: true
+  belongs_to :household_account
+
+  validates :name, presence: true, uniqueness: { scope: :household_account_id }
 end
