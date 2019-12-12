@@ -13,12 +13,24 @@ describe HouseholdAccountService::Create, type: :service do
 
     context 'when user does not have a household account yet' do
       let(:user) { create(:user) }
+      let(:create_predefined_budgets_service_double) do
+        instance_double(HouseholdAccountService::CreatePredefinedBudgets)
+      end
 
       it { is_expected.to be_success }
 
       it 'creates new household account associated with given user', :aggregate_failures do
         expect { service_call }.to change { HouseholdAccount.count }.by(1)
         expect(user.reload.household_account).to eq(HouseholdAccount.last)
+      end
+
+      it 'calls service that creates predefined budgets', :aggregate_failures do
+        expect(HouseholdAccountService::CreatePredefinedBudgets)
+          .to receive(:new)
+          .and_return(create_predefined_budgets_service_double)
+        expect(create_predefined_budgets_service_double)
+          .to receive(:call)
+        service_call
       end
 
       context 'when household account cannot be saved' do
