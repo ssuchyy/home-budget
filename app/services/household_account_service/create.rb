@@ -7,7 +7,8 @@ module HouseholdAccountService
 
     def call
       check_if_user_already_has_household_account
-        .bind { create_household_account }
+        .bind(method(:create_household_account))
+        .bind(method(:create_predefined_budgets))
     end
 
     private
@@ -20,14 +21,22 @@ module HouseholdAccountService
       end
     end
 
-    def create_household_account
-      account = HouseholdAccount.new(name: name, users: [user])
+    def create_household_account(_)
+      household_account = HouseholdAccount.new(name: name, users: [user])
 
-      if account.save
-        Success(object: account)
+      if household_account.save
+        Success(household_account: household_account)
       else
-        Failure(errors: account.errors.full_messages)
+        Failure(errors: household_account.errors.full_messages)
       end
+    end
+
+    def create_predefined_budgets(household_account:)
+      HouseholdAccountService::CreatePredefinedBudgets
+        .new(household_account: household_account)
+        .call
+
+      Success(object: household_account)
     end
   end
 end
