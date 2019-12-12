@@ -3,5 +3,6 @@
 FactoryBot.define do
   factory :budget do
     name { FFaker::Product.brand }
+    household_account
   end
 end

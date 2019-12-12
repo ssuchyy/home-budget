@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Budget < ApplicationRecord
   PREDEFINED_BUDGETS_NAMES = %w[house car food university entertainment].freeze
 

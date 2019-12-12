@@ -17,5 +17,6 @@ module V1
 
     mount V1::Users::Base
     mount V1::HouseholdAccounts::Base
+    mount V1::Budgets::Base
   end
 end

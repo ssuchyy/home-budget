@@ -19,7 +19,9 @@ describe HouseholdAccountService::CreatePredefinedBudgets, type: :service do
 
     context 'when household account does not have any budgets yet' do
       it 'creates all predefined budgets', :aggregate_failures do
-        expect { service_call }.to change { Budget.count }.by(Budget::PREDEFINED_BUDGETS_NAMES.size)
+        expect { service_call }
+          .to change { Budget.count }
+          .by(Budget::PREDEFINED_BUDGETS_NAMES.size)
         expect(created_budgets_names).to include(*Budget::PREDEFINED_BUDGETS_NAMES)
       end
     end
@@ -33,7 +35,9 @@ describe HouseholdAccountService::CreatePredefinedBudgets, type: :service do
       end
 
       it 'creates remaining predefined budgets', :aggregate_failures do
-        expect { service_call }.to change { Budget.count }.by(Budget::PREDEFINED_BUDGETS_NAMES.size - 1)
+        expect { service_call }
+          .to change { Budget.count }
+          .by(Budget::PREDEFINED_BUDGETS_NAMES.size - 1)
         expect(created_budgets_names).to include(*Budget::PREDEFINED_BUDGETS_NAMES)
       end
 
