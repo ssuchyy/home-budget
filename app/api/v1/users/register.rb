@@ -15,7 +15,6 @@ module V1
                         password: params[:password])
                    .call
 
-
           handle_service_result(result)
         end
       end
