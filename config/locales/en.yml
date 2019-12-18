@@ -8,3 +8,6 @@ en:
       errors:
         already_has_account: 'User already has household account'
         cannot_delete: 'Household account could not be deleted'
+    budget_service:
+      errors:
+        cannot_delete: 'Budget could not be deleted'
