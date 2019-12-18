@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_121623) do
+ActiveRecord::Schema.define(version: 2019_12_18_142211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 2019_12_12_121623) do
     t.datetime "updated_at", null: false
     t.bigint "household_account_id"
     t.index ["household_account_id"], name: "index_budgets_on_household_account_id"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.decimal "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "budget_id"
+    t.index ["budget_id"], name: "index_expenses_on_budget_id"
   end
 
   create_table "household_accounts", force: :cascade do |t|
@@ -98,6 +106,7 @@ ActiveRecord::Schema.define(version: 2019_12_12_121623) do
   end
 
   add_foreign_key "budgets", "household_accounts"
+  add_foreign_key "expenses", "budgets"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
