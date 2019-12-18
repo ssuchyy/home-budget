@@ -7,4 +7,5 @@ class Budget < ApplicationRecord
   has_many :expenses, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :household_account_id }
+  validates :limit, presence: true, numericality: { greater_than: 0 }
 end
