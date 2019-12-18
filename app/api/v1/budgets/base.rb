@@ -6,6 +6,7 @@ module V1
       helpers ::Helpers::V1::Authorization
 
       mount V1::Budgets::Create
+      mount V1::Budgets::Update
     end
   end
 end

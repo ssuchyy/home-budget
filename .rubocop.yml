@@ -17,6 +17,9 @@ Lint/AmbiguousBlockAssociation:
 Lint/ShadowingOuterLocalVariable:
   Exclude:
     - 'spec/rails_helper.rb'
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+    - 'spec/**/*'
 RSpec/NotToNot:
   EnforcedStyle: 'to_not'
 RSpec/ExpectChange:
