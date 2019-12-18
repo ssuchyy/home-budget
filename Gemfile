@@ -7,7 +7,7 @@ ruby '2.6.0'
 
 gem 'haml-rails', '~> 2.0'
 gem 'pg'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.3'
 
 # Authentication/Authorization
