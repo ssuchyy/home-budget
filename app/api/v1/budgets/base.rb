@@ -7,6 +7,7 @@ module V1
 
       mount V1::Budgets::Create
       mount V1::Budgets::Update
+      mount V1::Budgets::Delete
     end
   end
 end
