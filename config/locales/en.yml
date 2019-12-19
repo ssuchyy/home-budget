@@ -11,3 +11,6 @@ en:
     budget_service:
       errors:
         cannot_delete: 'Budget could not be deleted'
+    expense_service:
+      errors:
+        cannot_delete: 'Expense could not be deleted'
