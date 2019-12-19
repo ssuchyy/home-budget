@@ -47,7 +47,7 @@ RSpec.describe V1::Budgets::Update, type: :request do
         before do
           allow(BudgetService::Update)
             .to receive(:new)
-            .with(name: name, limit: limit, budget: budget)
+            .with(budget: budget, budget_params: { name: name, limit: limit })
             .and_return(update_service_double)
         end
 

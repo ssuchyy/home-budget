@@ -19,7 +19,7 @@ module V1
 
             authorize!(budget, :update?)
 
-            service_params = declared(params).merge(budget: budget).symbolize_keys
+            service_params = { budget: budget }.merge(budget_params: declared(params))
 
             result = BudgetService::Update
                      .new(service_params)
