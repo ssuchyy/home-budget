@@ -7,6 +7,7 @@ module V1
 
       mount V1::Expenses::Create
       mount V1::Expenses::Update
+      mount V1::Expenses::Delete
     end
   end
 end
