@@ -6,7 +6,17 @@ module Entities
       expose :id
       expose :name
       expose :limit
+      expose :remaining
       expose :household_account_id
+
+      private
+
+      def remaining
+        BudgetService::CalculateRemaining
+          .new(budget: object)
+          .call
+          .value![:remaining]
+      end
     end
   end
 end
