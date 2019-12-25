@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-describe BudgetService::Delete, type: :service do
+describe ExpenseService::Delete, type: :service do
   describe '#call' do
-    subject(:service_call) { described_class.new(budget: budget).call }
+    subject(:service_call) { described_class.new(expense: expense).call }
 
-    let!(:budget) { create(:budget) }
+    let!(:expense) { create(:expense) }
 
     let(:success) { subject.success }
     let(:failure) { subject.failure }
@@ -17,19 +17,19 @@ describe BudgetService::Delete, type: :service do
       expect(success).to eq(true)
     end
 
-    it 'destroys given budget', :aggregate_failures do
-      expect { service_call }.to change { Budget.count }.by(-1)
-      expect(budget.persisted?).to eq(false)
+    it 'destroys given expense', :aggregate_failures do
+      expect { service_call }.to change { Expense.count }.by(-1)
+      expect(expense.persisted?).to eq(false)
     end
 
-    context 'when budget cannot be destroyed' do
-      before { allow(budget).to receive(:destroy).and_return(false) }
+    context 'when expense cannot be destroyed' do
+      before { allow(expense).to receive(:destroy).and_return(false) }
 
       it { is_expected.to be_failure }
 
       it 'returns proper error message' do
         expect(failure[:errors])
-          .to include(I18n.t('services.budget_service.errors.cannot_delete'))
+          .to include(I18n.t('services.expense_service.errors.cannot_delete'))
       end
     end
   end

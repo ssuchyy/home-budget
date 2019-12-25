@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe V1::Budgets::Update, type: :request do
+RSpec.describe V1::Budgets::Show, type: :request do
   describe 'get api/v1/budgets/:id' do
     subject(:make_request) do
       get "/api/v1/budgets/#{budget_id}",
