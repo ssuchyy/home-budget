@@ -8,6 +8,10 @@ class BudgetPolicy
     @budget = budget
   end
 
+  def show?
+    can_manage_household_account?
+  end
+
   def update?
     can_manage_household_account?
   end

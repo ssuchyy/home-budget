@@ -33,6 +33,12 @@ RSpec.describe BudgetPolicy, type: :policy do
     end
   end
 
+  describe 'show?' do
+    subject { policy.show? }
+
+    it_behaves_like 'corresponding to user ability to manage household account'
+  end
+
   describe 'update?' do
     subject { policy.update? }
 
